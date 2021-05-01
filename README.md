@@ -1,4 +1,5 @@
 # calculation-fiis - @Author Ismael Alves <cearaismael1997@gmail.com>
+[![Build Status](https://travis-ci.com/ismaelalvesgit/vue-calculadora-fiis.svg?branch=master)](https://travis-ci.com/ismaelalvesgit/vue-calculadora-fiis)
 Este projeto foi gerado com [Vue.js](https://vuejs.org/) versão 2.6.11
 
 ## Screenshots
