@@ -20,13 +20,7 @@ npm install -g @vue/cli @vue/cli-service-global
 # OU
 yarn global add @vue/cli @vue/cli-service-global
 ```
-#### 2) Iniciar o ambiente backend
-``` sh
-docker-compose up -d --build
-```
-OBS: e necessario criar base de dados para o backend conforme está sendo informando na documentação do `backend`
-
-#### 3) Iniciar o servidor de desenvolvimento
+#### 2) Iniciar o servidor de desenvolvimento
 ```
 npm run serve
 ```
