@@ -1,28 +1,27 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <md-toolbar class="md-primary">
+      <h3 class="md-title" style="flex: 1">
+        Olá Bem-vindo(a) De Volta
+      </h3>
+      <md-button class="md-icon-button" @click="reset()">
+        <md-tooltip md-direction="top">Limpar Tudo</md-tooltip>
+        <md-icon>cached</md-icon>
+      </md-button>
+    </md-toolbar>
+    <router-view class="mb-5 mb-3"></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import store from './store'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  methods: {
+    reset: ()=>{
+      store.commit('clear')
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

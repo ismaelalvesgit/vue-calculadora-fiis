@@ -1,0 +1,27 @@
+language: node_js
+
+node_js:
+  - '14'
+  
+cache: npm
+
+services:
+  - docker
+
+branches:
+  only:
+    - master
+
+jobs:
+  include:
+    - stage: build
+      script:
+        - npm i 
+    - stage: test
+      script: 
+        - npm run lint
+    - stage: release docker image
+      script:
+        # - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - docker build -t calculation-fiis .
+        # - docker push $DOCKER_USERNAME/calculation-fiis

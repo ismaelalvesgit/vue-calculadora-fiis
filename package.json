@@ -5,17 +5,35 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "docker:build": "docker build -t calculation-fiis .",
+    "docker:run": "docker run -d  -p 80:80 --name calculation-fiis calculation-fiis",
+    "docker:down": "docker stop calculation-fiis",
+    "docker:remove": "docker container rm calculation-fiis"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.3",
+    "bootstrap": "^4.6.0",
     "core-js": "^3.6.5",
-    "vue": "^2.6.11"
+    "date-fns": "^2.21.1",
+    "es6-promise": "^4.2.8",
+    "jquery": "^3.6.0",
+    "popper.js": "^1.16.1",
+    "uuid": "^8.3.2",
+    "vue": "^2.6.11",
+    "vue-dnd-zone": "^0.4.0",
+    "vue-material": "^1.0.0-beta-15",
+    "vue-router": "^3.5.1",
+    "vue-sweetalert2": "^4.3.1",
+    "vuelidate": "^0.7.6",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "babel-eslint": "^10.1.0",
+    "dotenv-webpack": "^7.0.2",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
     "vue-template-compiler": "^2.6.11"
