@@ -7,6 +7,9 @@
                 :key="calculation.id"
                 :dnd-id="calculation.id"
                 :dnd-model="calculation">
+                    <!--
+                        Porcentagem
+                    -->
                     <porcentage1 v-if="calculation.type === 'porcentage1'" v-bind:data="calculation"></porcentage1>
                     <porcentage2 v-else-if="calculation.type === 'porcentage2'" v-bind:data="calculation"></porcentage2>
                     <porcentage3 v-else-if="calculation.type === 'porcentage3'" v-bind:data="calculation"></porcentage3>
@@ -14,6 +17,11 @@
                     <porcentage5 v-else-if="calculation.type === 'porcentage5'" v-bind:data="calculation"></porcentage5>
                     <porcentage6 v-else-if="calculation.type === 'porcentage6'" v-bind:data="calculation"></porcentage6>
                     <porcentage7 v-else-if="calculation.type === 'porcentage7'" v-bind:data="calculation"></porcentage7>
+                    <!--
+                        Qualitativa
+                    -->
+                    <qualitative1 v-else-if="calculation.type === 'qualitativa1'" v-bind:data="calculation"></qualitative1>
+                    
                     <md-card class="m-1" v-else>
                         <md-card-content>
                             <strong>Calculo Não encontrado</strong>
@@ -64,6 +72,7 @@ import porcentage4 from '../components/percentage/percentage04'
 import porcentage5 from '../components/percentage/percentage05'
 import porcentage6 from '../components/percentage/percentage06'
 import porcentage7 from '../components/percentage/percentage07'
+import qualitative1 from '../components/qualitative/qualitative01'
 import store from '../store'
 import mainService from '../services/main.service'
 import * as uuid from 'uuid'
@@ -78,6 +87,7 @@ export default {
         porcentage5,
         porcentage6,
         porcentage7,
+        qualitative1
     },
     data(){
         return {
@@ -95,11 +105,9 @@ export default {
     },
     computed: {
         calculations: ()=>{
-            console.log(store.state.calculations)
             return store.state.calculations
         },
         listCalculations: ()=>{
-            console.log(mainService.getListCalculations())
             return mainService.getListCalculations()
         }
     }

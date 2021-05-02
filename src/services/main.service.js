@@ -6,6 +6,63 @@ class MainService {
         return [
             {
                 id: uuid.v4(),
+                name: "Qualitativa",
+                icon: "fa fa-book",
+                list: [
+                    {
+                        id: uuid.v4(),
+                        name: "Avaliação Qualitativa",
+                        description: "Check list de avaliação qualitativa",
+                        value: {
+                            type:"qualitativa1",
+                            variables:{
+                                localization: {
+                                    value: 0,
+                                    weight: 1
+                                },
+                                manager: {
+                                    value: 0,
+                                    weight: 2
+                                },
+                                propertyConditions: {
+                                    value: 0,
+                                    weight: 1
+                                },
+                                vacancy: {
+                                    value: 0,
+                                    weight: 2
+                                },
+                                tenants: {
+                                    value: 0,
+                                    weight: 1
+                                },
+                                diversification: {
+                                    value: 0,
+                                    weight: 2
+                                },
+                                dividends: {
+                                    value: 0,
+                                    weight: 1
+                                },
+                                perpetuity: {
+                                    value: 0,
+                                    weight: 1.5
+                                },
+                                unrepentable: {
+                                    value: 0,
+                                    weight: 0.5
+                                },
+                                versatile: {
+                                    value: 0,
+                                    weight: 0.5
+                                }
+                            }
+                        }
+                    },
+                ]
+            },
+            {
+                id: uuid.v4(),
                 name: "Porcentagem",
                 icon: "fa fa-percent",
                 list: [
@@ -113,11 +170,14 @@ class MainService {
     }
     
     currencyFormat(value){
-        const val = (value/1).toFixed(2).replace('.', ',').toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-        if(val === "NaN" || val === "Infinity"){
-            return false
+        if(value){
+            const val = (value/1).toFixed(2).replace('.', ',').toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+            if(val === "NaN" || val === "Infinity"){
+                return false
+            }
+            return val
         }
-        return val
+        return 0
     }
 }
 

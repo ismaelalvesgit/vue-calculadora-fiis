@@ -16,15 +16,15 @@
     <md-card-content>
       <div class="md-layout md-gutter">
         <div class="md-layout-item md-small-size-100">
-          <md-field :class="$v.variables.porcentage.$error ? 'md-invalid': ''">
+          <md-field :class="$v.porcentage.$error ? 'md-invalid': ''">
             <label>X %</label>
-            <md-input v-model="$v.variables.porcentage.$model" type="number" maxlength="60"></md-input>
-            <span class="md-error" v-if="!$v.variables.porcentage.required">Percentual e Requirido </span>
+            <md-input v-model="$v.porcentage.$model" type="number" maxlength="60"></md-input>
+            <span class="md-error" v-if="!$v.porcentage.required">Percentual e Requirido </span>
           </md-field>
-          <md-field :class="$v.variables.value.$error ? 'md-invalid': ''">
+          <md-field :class="$v.value.$error ? 'md-invalid': ''">
             <label>Y R$</label>
-            <md-input v-model="$v.variables.value.$model" type="number" maxlength="60"></md-input>
-            <span class="md-error" v-if="!$v.variables.value.required">Valor e Requirido </span>
+            <md-input v-model="$v.value.$model" type="number" maxlength="60"></md-input>
+            <span class="md-error" v-if="!$v.value.required">Valor e Requirido </span>
           </md-field>
           <strong v-if="result">Resultado: R$ {{result}}</strong>
         </div>
@@ -45,28 +45,24 @@ export default {
   },
   data(){
     return {
-      variables:{
-        porcentage: this.data?.variables?.porcentage ?? 0,
-        value: this.data?.variables?.value ?? 0,
-      }
+      porcentage: this.data?.variables?.porcentage,
+      value: this.data?.variables?.value,
     }
   },
   validations:{
-    variables: {
-      porcentage: {
-        required
-      },
-      value: {
-        required
-      },
-    }
+    porcentage: {
+      required
+    },
+    value: {
+      required
+    },
   },
   computed: {
     result: function(){
-      if(this.variables){
-        return mainService.currencyFormat((this.variables.porcentage / 100) * this.variables.value)
+      if(!this.$v.$invalid){
+        return mainService.currencyFormat((this.porcentage / 100) * this.value)
       }
-      return 0
+      return false
     }
   },
   methods: {

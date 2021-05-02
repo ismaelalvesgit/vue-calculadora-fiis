@@ -16,15 +16,15 @@
     <md-card-content>
       <div class="md-layout md-gutter">
         <div class="md-layout-item md-small-size-100">
-          <md-field :class="$v.variables.value1.$error ? 'md-invalid': ''">
+          <md-field :class="$v.value1.$error ? 'md-invalid': ''">
             <label>Valor X R$</label>
-            <md-input v-model="$v.variables.value1.$model" type="number" maxlength="60"></md-input>
-            <span class="md-error" v-if="!$v.variables.value1.required">Valor e Requirido </span>
+            <md-input v-model="$v.value1.$model" type="number" maxlength="60"></md-input>
+            <span class="md-error" v-if="!$v.value1.required">Valor e Requirido </span>
           </md-field>
-          <md-field :class="$v.variables.value2.$error ? 'md-invalid': ''">
+          <md-field :class="$v.value2.$error ? 'md-invalid': ''">
             <label>Valor Y %</label>
-            <md-input v-model="$v.variables.value2.$model" type="number" maxlength="60"></md-input>
-            <span class="md-error" v-if="!$v.variables.value2.required">Valor e Requirido </span>
+            <md-input v-model="$v.value2.$model" type="number" maxlength="60"></md-input>
+            <span class="md-error" v-if="!$v.value2.required">Valor e Requirido </span>
           </md-field>
           <strong v-if="result">Resultado: R$ {{result}}</strong>
         </div>
@@ -45,29 +45,25 @@ export default {
   },
   data(){
     return {
-      variables:{
-        value1: this.data?.variables?.value1 ?? 0,
-        value2: this.data?.variables?.value2 ?? 0,
-      }
+      value1: this.data?.variables?.value1,
+      value2: this.data?.variables?.value2,
     }
   },
   validations:{
-    variables: {
-      value1: {
-        required
-      },
-      value2: {
-        required
-      },
-    }
+    value1: {
+      required
+    },
+    value2: {
+      required
+    },
   },
   computed: {
     result: function(){
-      if(this.variables){
-        const y = (this.variables.value1 / 100) * this.variables.value2
-        return mainService.currencyFormat(parseInt(this.variables.value1) - y)
+      if(!this.$v.$invalid){
+        const y = (this.value1 / 100) * this.value2
+        return mainService.currencyFormat(parseInt(this.value1) - y)
       }
-      return 0
+      return false
     }
   },
   methods: {
