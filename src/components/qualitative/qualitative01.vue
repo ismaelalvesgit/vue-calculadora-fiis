@@ -107,67 +107,69 @@ export default {
       versatile: this.data?.variables?.versatile,
     }
   },
-  validations:{
-    localization: {
-      value:{
-        required,
-        between: between(0, 1)
-      }
-    },
-    manager: {
-      value:{
-        required,
-        between: between(0, 2)
-      }
-    },
-    propertyConditions: {
-      value:{
-        required,
-        between: between(0, 1)
-      }
-    },
-    vacancy: {
-      value:{
-        required,
-        between: between(0, 2)
-      }
-    },
-    tenants: {
-      value:{
-        required,
-        between: between(0, 1)
-      }
-    },
-    diversification: {
-      value:{
-        required,
-        between: between(0, 2)
-      }
-    },
-    dividends: {
-      value:{
-        required,
-        between: between(0, 1)
-      }
-    },
-    perpetuity: {
-      value:{
-        required,
-        between: between(0, 1.5)
-      }
-    },
-    unrepentable: {
-      value:{
-        required,
-        between: between(0, 0.5)
-      }
-    },
-    versatile: {
-      value:{
-        required,
-        between: between(0, 0.5)
-      }
-    },
+  validations (){
+    return {
+      localization: {
+        value:{
+          required,
+          between: between(0, this.localization.weight)
+        }
+      },
+      manager: {
+        value:{
+          required,
+          between: between(0, this.manager.weight)
+        }
+      },
+      propertyConditions: {
+        value:{
+          required,
+          between: between(0, this.propertyConditions.weight)
+        }
+      },
+      vacancy: {
+        value:{
+          required,
+          between: between(0, this.vacancy.weight)
+        }
+      },
+      tenants: {
+        value:{
+          required,
+          between: between(0, this.tenants.weight)
+        }
+      },
+      diversification: {
+        value:{
+          required,
+          between: between(0, this.diversification.weight)
+        }
+      },
+      dividends: {
+        value:{
+          required,
+          between: between(0, this.dividends.weight)
+        }
+      },
+      perpetuity: {
+        value:{
+          required,
+          between: between(0, this.perpetuity.weight)
+        }
+      },
+      unrepentable: {
+        value:{
+          required,
+          between: between(0, this.unrepentable.weight)
+        }
+      },
+      versatile: {
+        value:{
+          required,
+          between: between(0, this.versatile.weight)
+        }
+      },
+    }
   },
   computed: {
     result: function(){
