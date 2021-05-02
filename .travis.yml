@@ -22,6 +22,6 @@ jobs:
         - npm run lint
     - stage: release docker image
       script:
-        # - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker build -t calculation-fiis .
-        # - docker push $DOCKER_USERNAME/calculation-fiis
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - docker build -t calculadora-fiis .
+        - docker push $DOCKER_USERNAME/calculadora-fiis
