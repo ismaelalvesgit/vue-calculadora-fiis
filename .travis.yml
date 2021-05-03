@@ -24,4 +24,5 @@ jobs:
       script:
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - docker build -t calculadora-fiis .
+        - docker tag calculadora-fiis $DOCKER_USERNAME/calculadora-fiis
         - docker push $DOCKER_USERNAME/calculadora-fiis
