@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fiis-calculator
+  labels:
+    app: fiis-calculator
+spec:
+  replicas: 1
+  minReadySeconds: 100
+  strategy:
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: fiis-calculator
+  template:
+    metadata:
+      labels:
+        app: fiis-calculator
+    spec:
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      containers:
+      - name: fiis-calculator
+        image: ismaelalvesdoc/calculadora-fiis
+        imagePullPolicy: Always
+        livenessProbe:
+          tcpSocket:
+            port: 80 
+          initialDelaySeconds: 35
+          timeoutSeconds: 30
+          failureThreshold: 5
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: 100m
+          limits:
+            memory: "500Mi"
+            cpu: 200m
+        ports:
+        - containerPort: 80
+          name: fiis-calculator-port

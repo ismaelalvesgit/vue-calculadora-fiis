@@ -1,0 +1,35 @@
+image:
+  repository: ismaelalvesdoc/calculadora-fiis
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  enabled: true
+  type: NodePort
+
+env:
+  SERVER_PORT: 80
+
+replicaCount: 1
+
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: 100m
+  limits:
+    memory: "500Mi"
+    cpu: 200m
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      targetAverageUtilization: 60
+  - type: Resource
+    resource:
+      name: memory
+      targetAverageUtilization: 60
