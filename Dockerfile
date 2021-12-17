@@ -5,7 +5,7 @@
 FROM node:latest as node
 WORKDIR /app
 COPY package.json /app/
-RUN npm i
+RUN npm i --production
 COPY ./ /app/
 RUN npm run build
 
