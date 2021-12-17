@@ -3,8 +3,11 @@ kind: Deployment
 metadata:
   name: {{ template "service.fullname" . }}
   labels: {{ include "service.labels" . | nindent 4 }}
+  {{- if or .Values.namespace .Release.Namespace  }}
+  namespace: {{ or .Values.namespace .Release.Namespace }}
+  {{- end}}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   minReadySeconds: 100
   strategy:
     rollingUpdate:

@@ -11,6 +11,7 @@ env:
   SERVER_PORT: 80
 
 replicaCount: 1
+namespace: 
 
 resources:
   requests:
